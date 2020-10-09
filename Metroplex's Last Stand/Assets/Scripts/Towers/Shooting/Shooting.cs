@@ -7,11 +7,13 @@ using UnityEngine;
 public class Shooting : MonoBehaviour
 {
     public bool tesla;
+    public bool money;
     private float shotTimer;
     public float baseFireRate;
     private float actualFireRate;
     public float baseDamage;
     private float actualDamage;
+    public float moneyPerTick;
     public GameObject projectile;
     public GameObject teslaProjectile;
     private GameObject justSpawnedTeslaProjectile;
@@ -20,11 +22,15 @@ public class Shooting : MonoBehaviour
     public Targeting targeting;
     public Transform shotPoint;
     public bool Buffed;
+    private MoneyManager moneyManager;
 
     void Awake()
     {
         actualFireRate = baseFireRate;
-        targeting = GetComponent<Targeting>();
+        if(money == false)
+        {
+            targeting = GetComponent<Targeting>();
+        }
         if (tesla == true)
         {
             targeting.tesla = true;
@@ -33,12 +39,16 @@ public class Shooting : MonoBehaviour
         {
             projectile.GetComponent<Projectile>().projectileTravelSpeed = projectileTravelSpeed;
         }
+        if(money == true)
+        {
+            moneyManager = GameObject.FindGameObjectWithTag("MoneyManager").GetComponent<MoneyManager>();
+        }
     }
 
     void Update()
     {
         shotTimer += Time.deltaTime;
-        if(tesla == false)
+        if(tesla == false && money == false)
         {
             if(shotTimer >= actualFireRate && targeting.currentTarget != null)
             {
@@ -47,7 +57,7 @@ public class Shooting : MonoBehaviour
                 shotTimer = 0;
             }
         }
-        else
+        else if(tesla == true)
         {
             if (shotTimer >= actualFireRate && targeting.enemiesInRange.Count > 0)
             {
@@ -62,6 +72,14 @@ public class Shooting : MonoBehaviour
                     // use damage void
                 }
                     shotTimer = 0;
+            }
+        }
+        else if(money == true)
+        {
+            if (shotTimer >= actualFireRate)
+            {
+                moneyManager.money += moneyPerTick;
+                //moneyManager.UpdateMoneyDisplay();
             }
         }
     }
