@@ -17,6 +17,8 @@ public class Shooting : MonoBehaviour
     public GameObject projectile;
     public GameObject teslaProjectile;
     private GameObject justSpawnedTeslaProjectile;
+    public GameObject moneyProjectile;
+    private GameObject justSpawnedMoneyProjectile;
     private GameObject firedProjectile;
     public float projectileTravelSpeed;
     public Targeting targeting;
@@ -78,6 +80,9 @@ public class Shooting : MonoBehaviour
         {
             if (shotTimer >= actualFireRate)
             {
+                justSpawnedMoneyProjectile = Instantiate(moneyProjectile, transform.position, Quaternion.identity);
+                //justSpawnedMoneyProjectile.GetComponent<ParticleSystem>().emission.
+                StartCoroutine(DespawnLighting(justSpawnedMoneyProjectile));
                 moneyManager.money += moneyPerTick;
                 //moneyManager.UpdateMoneyDisplay();
             }
