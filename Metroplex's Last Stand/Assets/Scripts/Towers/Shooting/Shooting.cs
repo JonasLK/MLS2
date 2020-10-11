@@ -43,7 +43,7 @@ public class Shooting : MonoBehaviour
         }
         if(money == true)
         {
-            moneyManager = GameObject.FindGameObjectWithTag("MoneyManager").GetComponent<MoneyManager>();
+            //moneyManager = GameObject.FindGameObjectWithTag("MoneyManager").GetComponent<MoneyManager>();
         }
     }
 
@@ -59,7 +59,8 @@ public class Shooting : MonoBehaviour
                 shotTimer = 0;
             }
         }
-        else if(tesla == true)
+        
+        if(tesla == true)
         {
             if (shotTimer >= actualFireRate && targeting.enemiesInRange.Count > 0)
             {
@@ -76,23 +77,26 @@ public class Shooting : MonoBehaviour
                     shotTimer = 0;
             }
         }
-        else if(money == true)
+
+        if(money == true)
         {
             if (shotTimer >= actualFireRate)
             {
                 justSpawnedMoneyProjectile = Instantiate(moneyProjectile, transform.position, Quaternion.identity);
-                //justSpawnedMoneyProjectile.GetComponent<ParticleSystem>().emission.
+                justSpawnedMoneyProjectile.GetComponentInChildren<ParticleSystem>().emission.SetBurst(0, new ParticleSystem.Burst(0,moneyPerTick));
                 StartCoroutine(DespawnLighting(justSpawnedMoneyProjectile));
-                moneyManager.money += moneyPerTick;
+                //moneyManager.money += moneyPerTick;
                 //moneyManager.UpdateMoneyDisplay();
+                //play sound
+                shotTimer = 0;
             }
         }
     }
 
-    IEnumerator DespawnLighting(GameObject lightningToDespawn)
+    IEnumerator DespawnLighting(GameObject particleToDespawn)
     {
         yield return new WaitForSeconds(actualFireRate/2);
-        Destroy(lightningToDespawn);
+        Destroy(particleToDespawn);
     }
 
     public void BuffUp(float attackSpeedBuff, float attackDamageBuff)
