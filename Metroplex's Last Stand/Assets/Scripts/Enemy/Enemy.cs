@@ -16,12 +16,6 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        if (health == 0)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
         Vector3 dir = target.position - transform.position;
         transform.Translate(dir.normalized * speed * Time.deltaTime, Space.World);
 
@@ -41,5 +35,14 @@ public class Enemy : MonoBehaviour
 
         wavepointIndex++;
         target = Waypoints.points[wavepointIndex];
+    }
+
+    public void Death()
+    {
+        if(health <= 0)
+        {
+
+            Destroy(gameObject);
+        }
     }
 }
