@@ -5,7 +5,7 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     public float projectileTravelSpeed;
-    public GameObject particle;
+    public GameObject projectileAfterEffect;
 
     void Update()
     {
@@ -19,6 +19,7 @@ public class Projectile : MonoBehaviour
 
     public void OnCollisionEnter(Collision c)
     {
-        
+        Instantiate(projectileAfterEffect, transform.position, Quaternion.identity);
+        Destroy(gameObject);
     }
 }
