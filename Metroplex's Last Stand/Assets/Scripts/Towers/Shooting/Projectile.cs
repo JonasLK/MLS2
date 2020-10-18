@@ -5,6 +5,7 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     public float projectileTravelSpeed;
+    public GameObject particle;
 
     void Update()
     {
@@ -14,5 +15,10 @@ public class Projectile : MonoBehaviour
     public void LookAtTarget(GameObject target)
     {
         transform.LookAt(target.transform);
+    }
+
+    public void OnCollisionEnter(Collision c)
+    {
+        
     }
 }
