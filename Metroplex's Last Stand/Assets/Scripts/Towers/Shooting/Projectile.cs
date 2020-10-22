@@ -6,10 +6,17 @@ public class Projectile : MonoBehaviour
 {
     public float projectileTravelSpeed;
     public GameObject projectileAfterEffect;
+    public int extraTurretRange;
+    public Vector3 turretPosition;
+    public int turretRange;
 
     void Update()
     {
         transform.Translate(projectileTravelSpeed * Vector3.forward * Time.deltaTime);
+        if (Vector3.Distance(gameObject.transform.position, turretPosition) >= turretRange + extraTurretRange)
+        {
+            Destroy(gameObject);
+        }
     }
 
     public void LookAtTarget(GameObject target)
@@ -17,7 +24,7 @@ public class Projectile : MonoBehaviour
         transform.LookAt(target.transform);
     }
 
-    public void OnCollisionEnter(Collision c)
+    public void DestroyProjectile()
     {
         Instantiate(projectileAfterEffect, transform.position, Quaternion.identity);
         Destroy(gameObject);

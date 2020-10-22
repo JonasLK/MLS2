@@ -56,7 +56,9 @@ public class Shooting : MonoBehaviour
             {
                 firedProjectile = Instantiate(projectile, shotPoint.position, Quaternion.identity);
                 firedProjectile.GetComponent<Projectile>().LookAtTarget(targeting.currentTarget);
-                shotTimer = 0;
+                firedProjectile.GetComponent<Projectile>().turretPosition = shotPoint.position;
+                firedProjectile.GetComponent<Projectile>().turretRange = GetComponent<Targeting>().Range;
+               shotTimer = 0;
             }
         }
         

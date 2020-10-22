@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class AOEProjectile : MonoBehaviour
 {
-    public void OnCollisionEnter(Collision c)
+    public int slowamount;
+
+    public void SlowField(GameObject enemy, Enemy enemyScript)
     {
-        
+        //enemyScript.
     }
 }
