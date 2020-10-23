@@ -11,6 +11,9 @@ TagManager:
   - MoneyManager
   - PreTower
   - BuffTurret
+  - SlowZone
+  - Projectile
+  - AOEProjectile
   layers:
   - Default
   - TransparentFX

@@ -4,10 +4,18 @@ using UnityEngine;
 
 public class AOEProjectile : MonoBehaviour
 {
-    public int slowamount;
-
-    public void SlowField(GameObject enemy, Enemy enemyScript)
+    public bool slow;
+    public float slowamount;
+    public float explosionDamage;
+    public float lifeTime;
+    public void Start()
     {
-        //enemyScript.
+        Despawn();
+    }
+
+    IEnumerator Despawn()
+    {
+        yield return new WaitForSeconds(lifeTime);
+        Destroy(gameObject);
     }
 }

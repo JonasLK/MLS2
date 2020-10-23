@@ -8,14 +8,4 @@ public class BuffTowers : MonoBehaviour
     public GameObject buffParticle;
     public float attackSpeedBuff;
     public float attackDamageBuff;
-
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
-    }
 }

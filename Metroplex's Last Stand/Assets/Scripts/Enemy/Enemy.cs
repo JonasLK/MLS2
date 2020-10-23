@@ -2,9 +2,10 @@
 
 public class Enemy : MonoBehaviour
 {
-    public float speed = 10f;
+    public float baseSpeed = 10f;
+    private float actualSpeed;
 
-    private float health = 100;
+    public float health = 100;
 
     private Transform target;
     private int wavepointIndex = 0;
@@ -12,12 +13,13 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         target = Waypoints.points[0];
+        actualSpeed = baseSpeed;
     }
 
     private void Update()
     {
         Vector3 dir = target.position - transform.position;
-        transform.Translate(dir.normalized * speed * Time.deltaTime, Space.World);
+        transform.Translate(dir.normalized * actualSpeed * Time.deltaTime, Space.World);
 
         if (Vector3.Distance(transform.position, target.position) <= 0.2f)
         {
@@ -35,6 +37,24 @@ public class Enemy : MonoBehaviour
 
         wavepointIndex++;
         target = Waypoints.points[wavepointIndex];
+    }
+
+    public void Damage(float damage)
+    {
+        health -= damage;
+        Death();
+    }
+
+    public void Slow(float slowAmount)
+    {
+        if(slowAmount == 0)
+        {
+            actualSpeed = baseSpeed;
+        }
+        else
+        {
+            actualSpeed -= actualSpeed * slowAmount;
+        }
     }
 
     public void Death()

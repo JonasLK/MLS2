@@ -73,7 +73,7 @@ public class Shooting : MonoBehaviour
                     justSpawnedTeslaProjectile.GetComponent<LightningBoltScript>().EndObject = enemy;
                     StartCoroutine(DespawnLighting(justSpawnedTeslaProjectile));
                     //play sound
-                    // get health script
+                    enemy.GetComponent<Enemy>().Damage(actualDamage);
                     // use damage void
                 }
                     shotTimer = 0;

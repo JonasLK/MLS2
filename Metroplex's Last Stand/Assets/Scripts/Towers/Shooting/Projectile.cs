@@ -26,7 +26,14 @@ public class Projectile : MonoBehaviour
 
     public void DestroyProjectile()
     {
-        Instantiate(projectileAfterEffect, transform.position, Quaternion.identity);
+        if(projectileAfterEffect.GetComponent<AOEProjectile>().slow == true)
+        {
+            Instantiate(projectileAfterEffect, transform.position + new Vector3(0,15,0), Quaternion.identity);
+        }
+        else
+        {
+            Instantiate(projectileAfterEffect, transform.position, Quaternion.identity);
+        }
         Destroy(gameObject);
     }
 }
