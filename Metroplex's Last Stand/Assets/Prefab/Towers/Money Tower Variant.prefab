@@ -30,9 +30,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tesla: 0
   money: 1
-  baseFireRate: 5
+  baseFireRate: 2
   baseDamage: 0
-  moneyPerTick: 5
+  moneyPerTick: 10
   projectile: {fileID: 0}
   teslaProjectile: {fileID: 0}
   moneyProjectile: {fileID: 3313940952666275582, guid: c6ab42638a3b7f042bc8fac3a98f717e,
