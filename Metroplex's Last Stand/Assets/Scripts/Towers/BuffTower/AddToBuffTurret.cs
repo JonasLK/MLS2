@@ -32,6 +32,7 @@ public class AddToBuffTurret : MonoBehaviour
             {
                 GetComponent<Shooting>().Buffed = false;
                 GetComponent<Shooting>().BuffUp(0,0);
+                Destroy(buffTowerParticle);
             }
         }
     }

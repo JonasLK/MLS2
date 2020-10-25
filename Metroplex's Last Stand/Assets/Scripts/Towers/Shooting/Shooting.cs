@@ -74,7 +74,6 @@ public class Shooting : MonoBehaviour
                     StartCoroutine(DespawnLighting(justSpawnedTeslaProjectile));
                     //play sound
                     enemy.GetComponent<Enemy>().Damage(actualDamage);
-                    // use damage void
                 }
                     shotTimer = 0;
             }

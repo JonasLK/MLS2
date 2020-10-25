@@ -10,13 +10,11 @@ public class TowerManager : MonoBehaviour
     public GameObject blueprint;
     public GameObject lastPlacedTower;
     public GameObject lastHoveredNode;
-    public GameObject lastSellingTower;
     public int towerToPlace;
     public List<GameObject> preTowers = new List<GameObject>();
     public List<GameObject> towers = new List<GameObject>();
     public MoneyManager moneyManager;
     public Manager manager;
-    public bool noFakeStart;
 
     public void Start()
     {
@@ -35,8 +33,8 @@ public class TowerManager : MonoBehaviour
                     Destroy(blueprint);
                     lastPlacedTower = Instantiate(towers[towerToPlace], placePos + nodeOffset, Quaternion.identity);
                     moneyManager.money -= towers[towerToPlace].GetComponent<OnTower>().cost;
-                    //moneyManager.UpdateMoneyDisplay();
-                    //manager.turnedOffGameObjects[0].SetActive(false);
+                    moneyManager.UpdateMoneyDisplay();
+                    moneyManager.buyPriceDisplayGo.SetActive(false);
                     placing = false;
                 }
             }
@@ -49,7 +47,7 @@ public class TowerManager : MonoBehaviour
         if (placing == true && Input.GetMouseButtonDown(1))
         {
             placing = false;
-            //manager.turnedOffGameObjects[0].SetActive(false);
+            moneyManager.buyPriceDisplayGo.SetActive(false);
             Destroy(blueprint);
         }
     }
@@ -64,9 +62,10 @@ public class TowerManager : MonoBehaviour
         placing = true;
         towerToPlace = newTowerToPlace;
         Instantiate(preTowers[towerToPlace], placePos + nodeOffset, Quaternion.identity);
-        //moneyManager.CostPriceUpdate(towers[towerToPlace].GetComponent<OnTower>().cost);
+        moneyManager.CostPriceUpdate(towers[towerToPlace].GetComponent<OnTower>().cost);
         blueprint = GameObject.FindGameObjectWithTag("PreTower");
-        //manager.turnedOffGameObjects[0].SetActive(true);
+        moneyManager.CostPriceUpdate(towers[towerToPlace].GetComponent<OnTower>().cost);
+        moneyManager.buyPriceDisplayGo.SetActive(true);
     }
 
     public void ChangeBluePrintPosition(Vector3 newPos)
@@ -76,10 +75,5 @@ public class TowerManager : MonoBehaviour
         {
             blueprint.transform.position = newPos + nodeOffset;
         }
-    }
-
-    public void SellingTower(GameObject sellingTower)
-    {
-        lastSellingTower = sellingTower;
     }
 }

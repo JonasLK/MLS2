@@ -114,7 +114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fe190e6d3277794aa5cb529768edf7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 1000
+  maxHealth: 5
   nodeUnderTurret: {fileID: 0}
 --- !u!114 &2069229283
 MonoBehaviour:
@@ -128,7 +128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31a92b1a4cd77d647846f2dd88e1b593, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buffTurretName: buffTurret
+  buffTurretName: BuffTurret
 --- !u!114 &2069229284
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,12 +141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81e937d31c8768840a3921046c9f6cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cost: 0
-  sellButton: {fileID: 0}
-  manager: {fileID: 0}
-  moneyManager: {fileID: 0}
-  towermanager: {fileID: 0}
-  sellButtonActive: 0
+  cost: 5
 --- !u!1001 &4080494519943526407
 PrefabInstance:
   m_ObjectHideFlags: 0
